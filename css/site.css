@@ -1,0 +1,41 @@
+.GridContainer {
+  display: grid;
+  grid-template-columns: 1fr 90% 1fr;
+  grid-template-rows: 1fr 90%;
+  grid-template-areas: 
+  "nav nav nav"
+  "leftmargin content rightmargin";
+}
+
+.NavBar {
+  grid-area: nav;
+  background: #d8e3e7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 5px; */
+  border: 2px solid rgb(121, 118, 118);
+  /* top: 0; */
+  height: 60px;
+}
+
+.MainContent {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.bars {
+  background: darkgrey;
+  font: 600 15px Lato, Helvetica, sans-serif;
+  color: #d8e3e7;
+  border: black 1px solid;
+  border-radius: 4px;
+  /* transition: all 300ms ease; */
+  margin-bottom: 3px;
+  height: 70px;
+  align-items: center;
+}
