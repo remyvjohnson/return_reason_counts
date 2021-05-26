@@ -45,10 +45,12 @@ function App() {
     for (let reason of reasonList) {
       newReasonCounts[reason] = newReasonCounts[reason] ? newReasonCounts[reason] + 1 : 1;
     };
-
+    
+    
     //doesn't get set until a render happens
     setReasonCounts(newReasonCounts);
     console.log('reasons counts', reasonCounts);
+    return newReasonCounts
   }
 
 
@@ -111,10 +113,8 @@ function App() {
           <div className="BarChart">
           <br></br>
             {
-                Object.entries(reasonCounts)
-                
+                Object.entries(reasonCounts).sort((a,b) => b[1]-a[1])
                 .filter(([reason, count]) => isRelevantReason(reason))                
-                // .sort((b, a) => b.reasonCounts[count] - a.reasonCounts[count])
                 .map(([reason, count]) => (
                   <div className="bars " style={{height: (count * 40) + "px"}}>
                   {reason}: {count}
