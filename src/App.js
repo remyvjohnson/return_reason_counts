@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import BarChart from './components/barchart/barchart.js';
+import Nav from './components/nav/nav.js';
 
 function App() {
   const [reasonCounts, setReasonCounts] = useState({});
@@ -46,11 +48,10 @@ function App() {
       newReasonCounts[reason] = newReasonCounts[reason] ? newReasonCounts[reason] + 1 : 1;
     };
     
-    
     //doesn't get set until a render happens
     setReasonCounts(newReasonCounts);
     console.log('reasons counts', reasonCounts);
-    return newReasonCounts
+    // return newReasonCounts
   }
 
 
@@ -86,7 +87,7 @@ function App() {
       return reason === "Product Damaged, but Shipping Box Intact" || reason === "Product and Shipping Box Both Damaged"
       || reason === "Item Arrived Too Late" || reason === "Wrong Item Sent" || reason === "Received Extra Item I Didn't Purchase (No Refund Needed)"
     }
-    if(limitBy === "Other") {
+    if(limitBy === "Other Issues") {
       return reason === "Purchased Multiple Sizes" || reason === "Found Better Price" || reason === "Ordered Wrong Item"
       || reason === "Unauthorized Purchase"
     } else {
@@ -97,32 +98,27 @@ function App() {
 
   return (
     <div className="GridContainer">
-      <nav className="NavBar">    
-          <label> Filter Results:
-              <select onChange={onLimitByChange} value={limitBy}>
-              <option value="all">all</option>
-              <option value="Fit Issues">Fit Issues</option>
-              <option value="Style Issues">Style Issues</option>
-              <option value="Operations and Shipping Issues">Operations and Shipping Issues</option>
-              <option value="Other">Other</option>
-              </select>
-            </label>
-      </nav>
-      <div className="MainContent">
-        <h1>Return Reason Counts</h1>
-          <div className="BarChart">
-          <br></br>
-            {
-                Object.entries(reasonCounts).sort((a,b) => b[1]-a[1])
-                .filter(([reason, count]) => isRelevantReason(reason))                
-                .map(([reason, count]) => (
-                  <div className="bars " style={{height: (count * 40) + "px"}}>
-                  {reason}: {count}
-                  </div>
-                ))
-            }
-          </div>
-      </div>
+      <Nav 
+        filter = {onLimitByChange}
+        value = {limitBy}
+        showAll = "all"
+        showFitIssues = "Fit Issues"
+        showStyleIssues = "Style Issues"
+        showOpsAndShippingIssues = "Operations and Shipping Issues"
+        showOtherIssues = "Other Issues"
+      />
+
+      <BarChart
+        dropDownValue = {limitBy}
+        fitIssuesTitle = "Return Reasons with Fit Issues"
+        styleIssuesTitle = "Return Reasons with Style Issues"
+        opsAndShippingIssuesTitle = "Return Reasons with Operations and Shipping Issues"
+        otherIssuesTitle = "Other Return Reasons"
+        allIssuesTitle = "All Return Reasons"
+        reasonCounts = {reasonCounts}
+        isRelevantReason = {isRelevantReason}
+      />
+      
     
     </div>
   );

@@ -1,0 +1,39 @@
+.MainContent {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.BarChart {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+  background: #d8e3e7;
+}
+
+
+.BarChart-bars {
+  background: darkgrey;
+  font: 600 15px Lato, Helvetica, sans-serif;
+  text-align: center;
+  color: #d8e3e7;
+  border: black 1px solid;
+  border-radius: 4px;
+  /* transition: all 300ms ease; */
+  margin-bottom: 3px;
+  width: 125px;
+  align-self: flex-end;
+}
+
+.BarChart-title {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(116, 113, 113);
+}

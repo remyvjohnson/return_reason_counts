@@ -1,0 +1,11 @@
+.NavBar {
+  grid-area: nav;
+  background: #d8e3e7;
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  /* padding: 5px; */
+  border: 2px solid rgb(121, 118, 118);
+  /* top: 0; */
+  height: 60px;
+}
